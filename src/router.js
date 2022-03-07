@@ -1,21 +1,36 @@
+import { defineAsyncComponent } from "vue";
+
 import { createRouter, createWebHistory } from "vue-router";
+
 //importing store for nav guards
 import store from "./store/index.js";
 
 //coaches components
 import CoachesList from "./pages/coaches/CoachesList.vue";
-import CoachProfile from "./pages/coaches/CoachProfile.vue";
-import RegisterCoach from "./pages/coaches/RegisterCoach.vue";
-
-//requets components
-import ContactCoach from "./pages/requests/ContactCoach.vue";
-import CoachRequests from "./pages/requests/CoachRequests.vue";
-
-//authentication components
-import UserAuth from "./pages/auth/UserAuth.vue";
 
 //Page not found component
 import NotFound from "./pages/NotFound.vue";
+
+//async(lazy) routes will only load when needed.
+const CoachProfile = defineAsyncComponent(() =>
+	import("./pages/coaches/CoachProfile.vue")
+);
+
+const RegisterCoach = defineAsyncComponent(() =>
+	import("./pages/coaches/RegisterCoach.vue")
+);
+
+const ContactCoach = defineAsyncComponent(() =>
+	import("./pages/requests/ContactCoach.vue")
+);
+
+const CoachRequests = defineAsyncComponent(() =>
+	import("./pages/requests/CoachRequests.vue")
+);
+
+const UserAuth = defineAsyncComponent(() =>
+	import("./pages/auth/UserAuth.vue")
+);
 
 const router = createRouter({
 	history: createWebHistory(),
